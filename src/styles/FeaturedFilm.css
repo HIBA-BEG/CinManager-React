@@ -1,0 +1,23 @@
+.featured-film {
+  height: 60vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.featured-content {
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+  max-width: 500px;
+}
+
+.featured-title {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.featured-description {
+  font-size: 18px;
+  margin-bottom: 20px;
+}

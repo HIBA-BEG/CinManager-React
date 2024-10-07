@@ -1,0 +1,14 @@
+.trending-films {
+  padding: 40px;
+}
+
+.section-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.film-list {
+  display: flex;
+  overflow-x: auto;
+  padding-bottom: 20px;
+}
