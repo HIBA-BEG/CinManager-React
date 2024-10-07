@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getAllFilms } from '../services/FilmServices';
-import FilmCard from './FilmCard';
-import Header from './Header';
-import LoadingSpinner from './LoadingSpinner';
+import FilmCard from '../components/FilmCard';
+import Header from '../components/Header';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const FilmsPage = () => {
     const [films, setFilms] = useState([]);

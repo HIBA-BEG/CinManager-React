@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getFilmById } from '../services/FilmServices';
-import Header from './Header';
-import LoadingSpinner from './LoadingSpinner';
+import Header from '../components/Header';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const FilmDetailsPage = () => {
   const { id } = useParams();

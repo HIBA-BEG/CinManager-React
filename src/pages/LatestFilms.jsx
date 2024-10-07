@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules'; 
 
-import FilmCard from './FilmCard';
+import FilmCard from '../components/FilmCard';
 import { getAllFilms } from '../services/FilmServices';
-import LoadingSpinner from './LoadingSpinner';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
