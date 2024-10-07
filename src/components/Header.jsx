@@ -12,6 +12,7 @@ export default function Header() {
                     <ul className="nav-links">
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/films">Films</Link></li>
+                        <li><Link to="/seances">Seances</Link></li>
                         {/* <li><Link to="/series">My reservations</Link></li>*/}
                     </ul>
                 </nav>

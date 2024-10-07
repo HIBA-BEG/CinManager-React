@@ -3,7 +3,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules'; 
 
 import FilmCard from './FilmCard';
-import { getAllFilms } from '../services/films/FilmServices';
+import { getAllFilms } from '../services/FilmServices';
+import LoadingSpinner from './LoadingSpinner';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -15,22 +16,34 @@ import 'swiper/css/pagination';
 const LatestFilms = () => {
     const [films, setFilms] = useState([]);
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
 
 
     useEffect(() => {
         const fetchFilms = async () => {
+
             try {
                 const filmData = await getAllFilms();
                 console.log(filmData);
-                setFilms(filmData);
+                if (Array.isArray(filmData)) {
+                    setFilms(filmData);
+                    setLoading(false); 
+                } else {
+                    throw new Error('Unexpected data format');
+                }
             } catch (error) {
                 setError('There has been a problem fetching films.');
+                setLoading(false);
                 console.error(error);
             }
         };
         fetchFilms();
     }, []);
 
+    if (loading) {
+        return <LoadingSpinner />;
+    }
+    
     if (error) {
         return <p>{error}</p>;
     }

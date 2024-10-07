@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function FilmCard({titre , id ,genre , duree , description, affiche}) {
-    console.log(affiche);
+    // console.log(affiche);
     return (
         <>
         <div key={id} className="film-card">
