@@ -5,6 +5,8 @@ import Main from "./components/Main";
 import FilmsPage from "./pages/FilmsPage";
 import FilmDetails from "./pages/FilmDetails";
 import SeancesPage from "./pages/SeancesPage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 
 function App() {
   return (
@@ -15,6 +17,9 @@ function App() {
         <Route exact path="/films" element={<FilmsPage />} />
         <Route exact path="/films/One/:id" element={<FilmDetails />} />
         <Route exact path="/seances" element={<SeancesPage/>} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+
         {/* <Route exact path="/about" element={<h1>About Page</h1>} /> */}
         <Route exact path="*" element={<h1>404 Page Not Found</h1>} />
       </Routes>
