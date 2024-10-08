@@ -16,8 +16,8 @@ export default function Header() {
         <header className="header">
             <div className="header-content">
                 <h1 className="logo">
-                    <span className="text-indigo-500 text-4xl">W</span>izard's
-                    <span className="text-indigo-500 text-4xl">W</span>and</h1>
+                    <span className="text-red-700 text-4xl">W</span>izard's
+                    <span className="text-red-700 text-4xl">W</span>and</h1>
                 <nav>
                     <ul className="nav-links">
                         <li><Link to="/">Home</Link></li>
@@ -36,7 +36,7 @@ export default function Header() {
                     <div className="flex items-center space-x-2">
                         <span className="text-sm font-bold">Hello, {user.nom} {user.prenom}</span>
                         <button onClick={handleLogout}
-                            className="bg-red-500 text-white px-3 py-1 rounded hover:bg-white transition duration-200"
+                            className="bg-red-700 text-white px-3 py-1 rounded hover:bg-white transition duration-200"
                         >
                              ❌
                         </button>

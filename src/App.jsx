@@ -7,6 +7,7 @@ import FilmDetails from "./pages/FilmDetails";
 import SeancesPage from "./pages/SeancesPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import NotFound from "./pages/NotFoundPage"
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
 
         {/* <Route exact path="/about" element={<h1>About Page</h1>} /> */}
-        <Route exact path="*" element={<h1>404 Page Not Found</h1>} />
+        <Route exact path="*" element={<NotFound/>} />
       </Routes>
       
       </BrowserRouter>
