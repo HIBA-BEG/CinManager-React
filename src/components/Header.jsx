@@ -25,7 +25,7 @@ export default function Header() {
                         <li><Link to="/seances">Seances</Link></li>
                         {/* <li><Link to="/series">My reservations</Link></li>*/}
                         {authenticated && (
-                            <li><Link to="/reservations" className="hover:text-indigo-500">My Reservations</Link></li>
+                            <li><Link to="/reservations">My Reservations</Link></li>
                         )}
                     </ul>
                 </nav>
@@ -36,8 +36,7 @@ export default function Header() {
                     <div className="flex items-center space-x-2">
                         <span className="text-sm font-bold">Hello, {user.nom} {user.prenom}</span>
                         <button onClick={handleLogout}
-                            className="bg-red-700 text-white px-3 py-1 rounded hover:bg-white transition duration-200"
-                        >
+                            className="bg-red-700 text-white px-3 py-1 rounded hover:bg-white transition duration-200">
                              ❌
                         </button>
                     </div>

@@ -54,7 +54,7 @@ const LatestFilms = () => {
             <Swiper
                 modules={[Navigation, Pagination]}
                 spaceBetween={50}
-                slidesPerView={3}
+                slidesPerView={4}
                 navigation
                 pagination={{ clickable: true }}
                 onSlideChange={() => console.log('slide change')}

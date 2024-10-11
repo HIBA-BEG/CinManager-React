@@ -14,7 +14,6 @@ export const registerUser = async (userData) => {
 export const loginUser = async (credentials) => {
     try {
         const response = await axios.post(`${BASE_URL}/auth/login`, credentials);
-        // Store JWT token in localStorage
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify(response.data.user));
         return response.data;

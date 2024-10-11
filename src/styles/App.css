@@ -1,45 +1,8 @@
-/* .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap');
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: "Playwrite DE Grund", cursive;
   background-color: #141414;
   color: white;
 }
@@ -58,12 +21,17 @@ body {
 }
 
 .btn-primary {
-  background-color: #F0D0E7;
-  color: black;
+  background-color: #B91C1C;
+  color: white;
+  border-radius: 12px;
 }
 
 .btn-secondary {
-  background: linear-gradient(to right, #F0D0E7, #6366F1);
+  /* background-color: #B91C1C; */
+  /* background: linear-gradient(to right, #ffffff, #B91C1C); */
+  background: radial-gradient( #B91C1C, #ffffff);
+  border: 2px solid #B91C1C;
+  border-radius: 12px;
   color: white;
   /* border: 1px solid white; */
 }

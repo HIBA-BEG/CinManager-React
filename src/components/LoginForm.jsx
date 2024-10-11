@@ -54,7 +54,7 @@ const LoginForm = () => {
                             placeholder="Enter your email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="p-2 w-full border rounded focus:outline-none focus:ring-2 focus:ring-red-700"
+                            className="p-2 w-full text-black border rounded focus:outline-none focus:ring-2 focus:ring-red-700"
                             required
                         />
                     </div>

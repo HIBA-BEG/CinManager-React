@@ -42,6 +42,7 @@ const SeanceList = () => {
                         date={seance.date}        
                         time={seance.heure_debut} 
                         salle={seance.salle}      
+                        seanceId={seance._id}
                     />
                 ))
             ) : (

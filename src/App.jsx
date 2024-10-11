@@ -8,6 +8,7 @@ import SeancesPage from "./pages/SeancesPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import NotFound from "./pages/NotFoundPage"
+import ReservationPage from "./pages/ReservationPage"
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/seances" element={<SeancesPage/>} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/reserve/:seanceId" element={<ReservationPage />} />
 
         {/* <Route exact path="/about" element={<h1>About Page</h1>} /> */}
         <Route exact path="*" element={<NotFound/>} />

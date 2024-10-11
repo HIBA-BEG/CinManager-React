@@ -31,6 +31,9 @@
   color: white;
   text-decoration: none;
 }
+.nav-links a:hover {
+  color: #B91C1C;
+}
 
 .header-icons {
   display: flex;
