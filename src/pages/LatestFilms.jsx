@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules'; 
+import { Link } from 'react-router-dom';
 
 import FilmCard from '../components/FilmCard';
 import { getAllFilms } from '../services/FilmServices';
@@ -27,15 +28,17 @@ const LatestFilms = () => {
                 console.log(filmData);
                 if (Array.isArray(filmData)) {
                     setFilms(filmData);
-                    setLoading(false); 
+                    // setLoading(false); 
                 } else {
                     throw new Error('Unexpected data format');
                 }
             } catch (error) {
                 setError('There has been a problem fetching films.');
-                setLoading(false);
+                // setLoading(false);
                 console.error(error);
-            }
+            } finally {
+                setLoading(false);
+              }
         };
         fetchFilms();
     }, []);
@@ -49,7 +52,7 @@ const LatestFilms = () => {
     }
 
     return (
-        <div className="trending-films">
+        <div className="trending-films items-center">
             <h3 className="section-title">Latest Films</h3>
             <Swiper
                 modules={[Navigation, Pagination]}
@@ -62,13 +65,15 @@ const LatestFilms = () => {
             >
                 {films.map((film, index) => (
                     <SwiperSlide key={index}>
-                        <FilmCard
-                            titre={film.titre}
-                            // genre={film.genre}
-                            // duree={film.duree}
-                            // description={film.description}
-                            affiche={film.affiche}
-                        />
+                        <Link to={`/films/One/${film._id}`} key={film.id} >
+                            <FilmCard
+                                titre={film.titre}
+                                // genre={film.genre}
+                                // duree={film.duree}
+                                // description={film.description}
+                                affiche={film.affiche}
+                            />
+                        </Link>
                     </SwiperSlide>
                 ))}
             </Swiper>

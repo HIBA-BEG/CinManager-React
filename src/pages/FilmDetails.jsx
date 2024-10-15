@@ -18,13 +18,15 @@ const FilmDetailsPage = () => {
         // setFilm(filmData);
         if (filmData) {
           setFilm(filmData);
-          setLoading(false); 
+          // setLoading(false); 
       } else {
           throw new Error('Unexpected data format');
       }
       } catch (error) {
-        setError('Error fetching film details.');
-        console.error(error);
+         setError('Error fetching film details.');
+          console.error(error);
+      } finally {
+        setLoading(false);
       }
     };
     if (id) {

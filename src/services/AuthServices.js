@@ -4,9 +4,15 @@ const BASE_URL = 'http://localhost:3000/api';
 
 export const registerUser = async (userData) => {
     try {
-        const response = await axios.post(`${BASE_URL}/auth/register`, userData);
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        };
+        const response = await axios.post(`${BASE_URL}/auth/register`, userData, config);
         return response.data;
     } catch (error) {
+        console.log(error);
         throw new Error(error.response.data.message || 'Error registering user');
     }
 };

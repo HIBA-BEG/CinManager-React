@@ -14,19 +14,19 @@ function App() {
   return (
     <>
       <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route exact path="/films" element={<FilmsPage />} />
-        <Route exact path="/films/One/:id" element={<FilmDetails />} />
-        <Route exact path="/seances" element={<SeancesPage/>} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/reserve/:seanceId" element={<ReservationPage />} />
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route exact path="/films" element={<FilmsPage />} />
+          <Route exact path="/films/One/:id" element={<FilmDetails />} />
+          <Route exact path="/seances" element={<SeancesPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/reserve/:seanceId" element={<ReservationPage />} />
 
-        {/* <Route exact path="/about" element={<h1>About Page</h1>} /> */}
-        <Route exact path="*" element={<NotFound/>} />
-      </Routes>
-      
+          {/* <Route exact path="/about" element={<h1>About Page</h1>} /> */}
+          <Route exact path="*" element={<NotFound />} />
+        </Routes>
+
       </BrowserRouter>
     </>
   );
