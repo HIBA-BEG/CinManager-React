@@ -1,5 +1,3 @@
-
-// import Header from "./components/Header";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Main from "./components/Main";
 import FilmsPage from "./pages/FilmsPage";
@@ -9,6 +7,11 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import NotFound from "./pages/NotFoundPage"
 import ReservationPage from "./pages/ReservationPage"
+import Layout from "./components/Admin/Layout";
+import HomeAdmin from "./pages/Admin/HomeAdmin"
+import FilmManagement from "./pages/Admin/FilmManagement"
+import UserManagement from "./pages/Admin/UserManagement"
+import WatchMovie from "./pages/WatchMovie";
 
 function App() {
   return (
@@ -22,9 +25,19 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/reserve/:seanceId" element={<ReservationPage />} />
+          <Route path="/films/One/watch/:id" element={<WatchMovie />} />
 
           {/* <Route exact path="/about" element={<h1>About Page</h1>} /> */}
           <Route exact path="*" element={<NotFound />} />
+
+          <Route path="/admin" element={<Layout />}>
+            <Route index element={<HomeAdmin />} />
+            <Route path="FilmManagement" element={<FilmManagement />} />
+            <Route path="UserManagement" element={<UserManagement />} />
+            {/* <Route path="seances" element={<Seances />} />
+            <Route path="reservations" element={<Reservations />} /> */}
+          </Route>
+
         </Routes>
 
       </BrowserRouter>

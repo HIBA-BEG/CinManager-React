@@ -6,10 +6,11 @@ const SeanceCard = ({ film, date, time, salle, seanceId }) => {
     const navigate = useNavigate();
 
     const handleReserveClick = () => {
-        // console.log("Navigating to reserve page for seanceId:", seanceId); 
         navigate(`/reserve/${seanceId}`);
     };
-    return (
+    // const afficheUrl = `${process.env.REACT_APP_MINIO_PATH}${film.affiche}`;
+        return (
+        console.log(film),
         <div className="p-4 flex flex-col bg-gray-800 text-white rounded-lg shadow-lg mb-4">
 
             <h3 className="text-xl font-bold text-center mb-2">{film ? film.titre : 'Untitled Movie'}</h3>

@@ -1,8 +1,7 @@
-// src/components/FilmsPage.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getAllFilms } from '../services/FilmServices';
-import FilmCard from '../components/FilmCard';
+import FilmCard from '../components/Film/FilmCard';
 import Header from '../components/Header';
 import LoadingSpinner from '../components/LoadingSpinner';
 
@@ -16,8 +15,8 @@ const FilmsPage = () => {
             try {
                 const filmData = await getAllFilms();
                 if (Array.isArray(filmData)) {
-                    setFilms(filmData);
-                    setLoading(false); 
+                    const sortedFilms = filmData.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                    setFilms(sortedFilms);
                 } else {
                     throw new Error('Unexpected data format');
                 }
@@ -25,13 +24,15 @@ const FilmsPage = () => {
             } catch (error) {
                 setError('Error fetching films.');
                 console.error(error);
+            } finally {
+                setLoading(false);
             }
         };
         fetchFilms();
     }, []);
 
     if (isLoading) {
-        return <LoadingSpinner/>;
+        return <LoadingSpinner />;
     }
     if (error) {
         return <p>{error}</p>;

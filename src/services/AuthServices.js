@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:3000/api';
+const apiUrl = process.env.REACT_APP_API_URL
 
 export const registerUser = async (userData) => {
     try {
@@ -9,7 +9,7 @@ export const registerUser = async (userData) => {
                 'Content-Type': 'multipart/form-data'
             }
         };
-        const response = await axios.post(`${BASE_URL}/auth/register`, userData, config);
+        const response = await axios.post(`${apiUrl}/auth/register`, userData, config);
         return response.data;
     } catch (error) {
         console.log(error);
@@ -19,7 +19,7 @@ export const registerUser = async (userData) => {
 
 export const loginUser = async (credentials) => {
     try {
-        const response = await axios.post(`${BASE_URL}/auth/login`, credentials);
+        const response = await axios.post(`${apiUrl}/auth/login`, credentials);
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify(response.data.user));
         return response.data;

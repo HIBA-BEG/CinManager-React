@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { loginUser } from '../services/AuthServices';
+import { loginUser } from '../../services/AuthServices';
 
 const LoginForm = () => {
     const [email, setEmail] = useState('');
@@ -30,9 +30,15 @@ const LoginForm = () => {
         setIsLoading(true);
         const credentials = { email, password };
 
+        
         try {
-            await loginUser(credentials);
-            navigate('/seances');
+            const { user } = await loginUser(credentials);
+
+            if (user.type === 'Administrateur') {
+                navigate('/admin');  
+            } else if (user.type === 'Client') {
+                navigate('/client/reservations'); 
+            }
         } catch (err) {
             setError(err.message || 'An error occurred during login');
         } finally {

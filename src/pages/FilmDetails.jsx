@@ -1,9 +1,10 @@
-// src/components/FilmDetailsPage.js
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getFilmById } from '../services/FilmServices';
 import Header from '../components/Header';
 import LoadingSpinner from '../components/LoadingSpinner';
+import { Link } from 'react-router-dom';
+
 
 const FilmDetailsPage = () => {
   const { id } = useParams();
@@ -15,16 +16,14 @@ const FilmDetailsPage = () => {
     const fetchFilm = async () => {
       try {
         const filmData = await getFilmById(id);
-        // setFilm(filmData);
         if (filmData) {
           setFilm(filmData);
-          // setLoading(false); 
-      } else {
+        } else {
           throw new Error('Unexpected data format');
-      }
+        }
       } catch (error) {
-         setError('Error fetching film details.');
-          console.error(error);
+        setError('Error fetching film details.');
+        console.error(error);
       } finally {
         setLoading(false);
       }
@@ -35,27 +34,22 @@ const FilmDetailsPage = () => {
   }, [id]);
 
   if (isLoading) {
-    return <LoadingSpinner/>;
+    return <LoadingSpinner />;
   }
 
   if (error) {
     return <p>{error}</p>;
   }
-
-  if (!film) {
-    return <p>Loading...</p>;
-  }
+ 
+  const afficheUrl = `${process.env.REACT_APP_MINIO_PATH}${film.affiche}`;
 
   return (
-    // console.log(film.affiche),
     <>
       <Header />
-
-
       <div className="max-w-4xl mx-auto p-4 flex flex-col md:flex-row items-center md:items-start mb-6">
 
         <img
-          src={film.affiche}
+          src={afficheUrl}
           alt={film.titre}
           className="h-full md:w-1/2 rounded-lg shadow-md mb-4 md:mb-0"
         />
@@ -67,6 +61,12 @@ const FilmDetailsPage = () => {
 
           <h3 className="text-xl font-semibold mb-2">Description:</h3>
           <p className="text-white">{film.description}</p>
+          <Link to={`/films/One/watch/${film._id}`} key={film._id}>
+            <button className=" bg-red-800 text-white p-2 rounded-xl hover:bg-black transition duration-200 items-center">
+              Watch Now
+            </button>
+          </Link>
+
         </div>
 
       </div>

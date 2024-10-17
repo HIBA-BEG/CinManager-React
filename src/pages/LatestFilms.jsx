@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules'; 
 import { Link } from 'react-router-dom';
 
-import FilmCard from '../components/FilmCard';
+import FilmCard from '../components/Film/FilmCard';
 import { getAllFilms } from '../services/FilmServices';
 import LoadingSpinner from '../components/LoadingSpinner';
 
@@ -27,7 +27,8 @@ const LatestFilms = () => {
                 const filmData = await getAllFilms();
                 console.log(filmData);
                 if (Array.isArray(filmData)) {
-                    setFilms(filmData);
+                    const sortedFilms = filmData.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                    setFilms(sortedFilms);
                     // setLoading(false); 
                 } else {
                     throw new Error('Unexpected data format');
