@@ -10,7 +10,7 @@ const Sidebar = () => {
     { name: 'Home', path: '/admin' },
     { name: 'Film Management', path: '/admin/filmManagement' },
     { name: 'User Management', path: '/admin/UserManagement' },
-    { name: 'Seance Management', path: '/admin/seanceManagement' },
+    { name: 'Seance Management', path: '/admin/SeancesManagement' },
     { name: 'All Reservations', path: '/admin/reservations' },
   ];
 

@@ -11,6 +11,7 @@ import Layout from "./components/Admin/Layout";
 import HomeAdmin from "./pages/Admin/HomeAdmin"
 import FilmManagement from "./pages/Admin/FilmManagement"
 import UserManagement from "./pages/Admin/UserManagement"
+import SeancesManagement from "./pages/Admin/SeanceManagement"
 import WatchMovie from "./pages/WatchMovie";
 
 function App() {
@@ -34,8 +35,8 @@ function App() {
             <Route index element={<HomeAdmin />} />
             <Route path="FilmManagement" element={<FilmManagement />} />
             <Route path="UserManagement" element={<UserManagement />} />
-            {/* <Route path="seances" element={<Seances />} />
-            <Route path="reservations" element={<Reservations />} /> */}
+            <Route path="SeancesManagement" element={<SeancesManagement/>} />
+            {/* <Route path="reservations" element={<Reservations />} /> */}
           </Route>
 
         </Routes>

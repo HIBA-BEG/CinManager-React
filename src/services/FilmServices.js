@@ -25,7 +25,9 @@ export const getAllFilms = async () => {
 
 export const getFilmById = async (id) => {
   try {
-    const response = await axiosAuth().get(`${apiUrl}/films/One/${id}`);
+    console.log('ID Film:', id); 
+    const response = await axios.get(`${apiUrl}/films/One/${id}`);
+    console.log('Film data:', response.data); //
     return response.data;
   } catch (error) {
     throw new Error("Error fetching film by ID: " + error.message);

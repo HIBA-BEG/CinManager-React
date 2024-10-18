@@ -28,11 +28,13 @@ body {
   background-color: #B91C1C;
   color: white;
   border-radius: 12px;
+  border: 2px solid #B91C1C;
 }
 
 .btn-primary:hover {
-  background-color: #830000;
-  color: white;
+  background-color: white;
+  color: #B91C1C;
+  border: 2px solid #B91C1C;
 }
 
 .btn-secondary {
@@ -40,5 +42,8 @@ body {
   border: 2px solid #B91C1C;
   border-radius: 12px;
   color: #B91C1C;
-  /* border: 1px solid white; */
+}
+.btn-secondary:hover {
+  background-color: #B91C1C;
+  color: white;
 }
