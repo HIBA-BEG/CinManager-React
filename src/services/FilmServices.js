@@ -112,3 +112,4 @@ export const addGenre = async (genreData) => {
     throw error;
   }
 };
+
