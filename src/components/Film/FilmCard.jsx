@@ -1,7 +1,7 @@
 import React from "react";
 
-export default function FilmCard({titre , id ,genre , duree , description, affiche}) {
-    console.log(affiche);
+export default function FilmCard({titre , id ,genres , duree , description, affiche}) {
+    // console.log(affiche);
     const afficheUrl = `${process.env.REACT_APP_MINIO_PATH}${affiche}`;
     return (
         <>
@@ -16,6 +16,7 @@ export default function FilmCard({titre , id ,genre , duree , description, affic
                 <p>No image available</p>
             )}
             <p className="film-title">{titre}</p>
+            <p className="text-sm text-gray-600">{genres}</p>
 
         </div>
         </>
