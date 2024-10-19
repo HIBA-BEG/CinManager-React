@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules'; 
+import { Navigation, Pagination } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 
 import FilmCard from '../components/Film/FilmCard';
@@ -39,7 +39,7 @@ const LatestFilms = () => {
                 console.error(error);
             } finally {
                 setLoading(false);
-              }
+            }
         };
         fetchFilms();
     }, []);
@@ -47,7 +47,7 @@ const LatestFilms = () => {
     if (loading) {
         return <LoadingSpinner />;
     }
-    
+
     if (error) {
         return <p>{error}</p>;
     }
@@ -55,29 +55,33 @@ const LatestFilms = () => {
     return (
         <div className="trending-films items-center">
             <h3 className="section-title">Latest Films</h3>
-            <Swiper
-                modules={[Navigation, Pagination]}
-                spaceBetween={50}
-                slidesPerView={4}
-                navigation
-                pagination={{ clickable: true }}
-                onSlideChange={() => console.log('slide change')}
-                onSwiper={(swiper) => console.log(swiper)}
-            >
-                {films.map((film, index) => (
-                    <SwiperSlide key={index}>
-                        <Link to={`/films/One/${film._id}`} key={film.id} >
-                            <FilmCard
-                                titre={film.titre}
-                                // genre={film.genre}
-                                // duree={film.duree}
-                                // description={film.description}
-                                affiche={film.affiche}
-                            />
-                        </Link>
-                    </SwiperSlide>
-                ))}
-            </Swiper>
+            <div className="film-list">
+
+                <Swiper
+                    modules={[Navigation, Pagination]}
+                    spaceBetween={20}
+                    slidesPerView={4}
+                    navigation
+                    pagination={{ clickable: true }}
+                    // onSlideChange={() => console.log('slide change')}
+                    // onSwiper={(swiper) => console.log(swiper)}
+                    className="mySwiper flex flex-col justify-center items-center"
+                >
+                    {films.map((film, index) => (
+                        <SwiperSlide key={index}>
+                            <Link to={`/films/One/${film._id}`} key={film.id} >
+                                <FilmCard
+                                    titre={film.titre}
+                                    // genre={film.genre}
+                                    // duree={film.duree}
+                                    // description={film.description}
+                                    affiche={film.affiche}
+                                />
+                            </Link>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </div>
         </div>
     );
 };

@@ -16,7 +16,7 @@ const AddFilmModal = ({ onClose, onAddFilm }) => {
         isStreamed: '',
         releaseStreamDate: '',
     });
-
+        
     const [genres, setGenres] = useState([]);
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -45,7 +45,7 @@ const AddFilmModal = ({ onClose, onAddFilm }) => {
     };
 
     const handleFileChange = (e) => {
-        setFilmData({ ...filmData, [e.target.name]: e.target.files[0] });
+        setFilmData({ ...filmData, [e.target.name]: e.target.files?.[0].name });
     };
 
     const handleGenreChange = (e) => {
@@ -81,7 +81,7 @@ const AddFilmModal = ({ onClose, onAddFilm }) => {
             <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-xl">
                 <h2 className="text-red-700 text-4xl font-bold text-center mb-6">Add New Film</h2>
                 {error && <p className="text-red-500 text-center mb-4">{error}</p>}
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4" encType="multipart/form-data">
                     {/* <div className='flex flex-col'> */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
