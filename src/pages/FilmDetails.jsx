@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import AddComment from '../components/Film/AddComment';
 import AllComments from '../components/Film/AllComments';
 import { getCommentairesByFilm } from '../services/CommentaireServices';
+import { isAuthenticated } from '../services/AuthServices'; // Import isAuthenticated
 
 
 const FilmDetailsPage = () => {
@@ -15,7 +16,7 @@ const FilmDetailsPage = () => {
   const [error, setError] = useState(null);
   const [isLoading, setLoading] = useState(true);
   const [comments, setComments] = useState([]);
-  
+
   useEffect(() => {
     fetchFilm();
     fetchComments();
@@ -89,7 +90,9 @@ const FilmDetailsPage = () => {
       </div>
 
       <div className="mt-8">
-        <AddComment filmId={id} onAddComment={handleAddComment} />
+        {isAuthenticated(
+          <AddComment filmId={id} onAddComment={handleAddComment} />
+        )}
         <AllComments comments={comments} setComments={setComments} />
       </div>
 
