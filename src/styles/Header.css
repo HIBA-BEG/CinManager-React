@@ -4,6 +4,7 @@
   align-items: center;
   padding: 20px;
   background-color: #141414;
+  height: 110px;
 }
 
 .header-content {
@@ -12,7 +13,7 @@
 }
 
 .logo {
-  font-size: 24px;
+  font-size: 30px;
   font-weight: bold;
   margin-right: 40px;
 }
@@ -21,6 +22,8 @@
   display: flex;
   list-style-type: none;
   padding: 0;
+  gap: 20px;
+  font-size: 26px;
 }
 
 .nav-links li {
@@ -31,7 +34,8 @@
   color: white;
   text-decoration: none;
 }
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.text-red-700 {
   color: #B91C1C;
 }
 

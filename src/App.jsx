@@ -13,6 +13,7 @@ import FilmManagement from "./pages/Admin/FilmManagement"
 import UserManagement from "./pages/Admin/UserManagement"
 import SeancesManagement from "./pages/Admin/SeanceManagement"
 import WatchMovie from "./pages/WatchMovie";
+import MyReservationsPage from "./pages/MyReservationsPage";
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/reserve/:seanceId" element={<ReservationPage />} />
           <Route path="/films/One/watch/:id" element={<WatchMovie />} />
-
+          <Route path="/MyReservations" element={<MyReservationsPage />} />
           {/* <Route exact path="/about" element={<h1>About Page</h1>} /> */}
           <Route exact path="*" element={<NotFound />} />
 

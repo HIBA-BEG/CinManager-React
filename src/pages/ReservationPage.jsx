@@ -10,10 +10,9 @@ const ReservePage = () => {
     const [selectedSeats, setSelectedSeats] = useState([]);
 
     useEffect(() => {
-        // Fetch available seats when the component mounts
         const fetchSeats = async () => {
             try {
-                const token = localStorage.getItem('token'); // Get the JWT token
+                const token = localStorage.getItem('token');
                 if (!token) {
                     console.error("No token found!");
                     return;

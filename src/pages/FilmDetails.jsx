@@ -17,7 +17,7 @@ const FilmDetailsPage = () => {
   const [isLoading, setLoading] = useState(true);
   const [comments, setComments] = useState([]);
   const isLoggedIn = isAuthenticated();
-  
+
   useEffect(() => {
     fetchFilm();
     fetchComments();
@@ -60,6 +60,10 @@ const FilmDetailsPage = () => {
     return <p>{error}</p>;
   }
 
+  if (!film) {
+    return <p className='text-center text-2xl font-bold'>No film data available.</p>;
+  }
+
   const afficheUrl = `${process.env.REACT_APP_MINIO_PATH}${film.affiche}`;
 
   return (
@@ -75,23 +79,33 @@ const FilmDetailsPage = () => {
 
         <div className="md:ml-6 text-left flex-1">
           <h2 className="text-3xl font-bold text-center mb-6">{film.titre}</h2>
-          <p className="text-xl font-semibold">Genre: <span className="font-normal text-lg">{film.genre}</span></p>
+          <p className="text-xl font-semibold">Genre: 
+            <span className="font-normal text-lg">
+              {Array.isArray(film.genre)
+                ? film.genre.map(g => g.nom).join(', ')
+                : 'No genres available'}
+            </span>
+          </p>
           <p className="text-xl font-semibold">Duration: <span className="font-normal text-lg">{film.duree}</span></p>
 
           <h3 className="text-xl font-semibold mb-2">Description:</h3>
           <p className="text-white">{film.description}</p>
-          <Link to={`/films/One/watch/${film._id}`} key={film._id}>
-            <button className=" bg-red-800 text-white p-2 rounded-xl hover:bg-black transition duration-200 items-center">
-              Watch Now
-            </button>
-          </Link>
+          {film.video ? (
+            <Link to={`/films/One/watch/${film._id}`} key={film._id}>
+              <button className="btn btn-primary mt-4">
+                Watch Now
+              </button>
+            </Link>
+          ) : (
+            <p className="border border-yellow-500 rounded-xl p-2 text-yellow-500 font-semibold mt-4">Streaming this movie soon ...</p>
+          )}
 
         </div>
 
       </div>
 
       <div className="mt-8">
-      {isLoggedIn && <AddComment filmId={id} onAddComment={handleAddComment} />}
+        {isLoggedIn && <AddComment filmId={id} onAddComment={handleAddComment} />}
 
         <AllComments comments={comments} setComments={setComments} />
       </div>
