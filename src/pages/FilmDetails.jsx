@@ -16,7 +16,8 @@ const FilmDetailsPage = () => {
   const [error, setError] = useState(null);
   const [isLoading, setLoading] = useState(true);
   const [comments, setComments] = useState([]);
-
+  const isLoggedIn = isAuthenticated();
+  
   useEffect(() => {
     fetchFilm();
     fetchComments();
@@ -90,9 +91,8 @@ const FilmDetailsPage = () => {
       </div>
 
       <div className="mt-8">
-        {isAuthenticated(
-          <AddComment filmId={id} onAddComment={handleAddComment} />
-        )}
+      {isLoggedIn && <AddComment filmId={id} onAddComment={handleAddComment} />}
+
         <AllComments comments={comments} setComments={setComments} />
       </div>
 
