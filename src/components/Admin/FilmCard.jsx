@@ -15,7 +15,13 @@ const FilmCard = ({ titre, producer, dateSortie, genre, duree, affiche }) => {
                 <h3 className="text-xl text-center font-semibold text-white">{titre}</h3>
                 <p>Producer: {producer}</p>
                 <p>Release Date: {new Date(dateSortie).toLocaleDateString()}</p>
-                <p>Genre: [{genre.nom}]</p>
+                <p className="text-xl font-semibold">Genre:
+                    <span className="font-normal text-lg">
+                        {Array.isArray(genre)
+                            ? genre.map(g => g.nom).join(', ')
+                            : 'No genres available'}
+                    </span>
+                </p>
                 <p>Duration: {duree}</p>
             </div>
         </div>

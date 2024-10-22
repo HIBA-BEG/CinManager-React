@@ -29,13 +29,11 @@ const LatestFilms = () => {
                 if (Array.isArray(filmData)) {
                     const sortedFilms = filmData.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
                     setFilms(sortedFilms);
-                    // setLoading(false); 
                 } else {
                     throw new Error('Unexpected data format');
                 }
             } catch (error) {
                 setError('There has been a problem fetching films.');
-                // setLoading(false);
                 console.error(error);
             } finally {
                 setLoading(false);
@@ -60,16 +58,33 @@ const LatestFilms = () => {
                 <Swiper
                     modules={[Navigation, Pagination]}
                     spaceBetween={20}
-                    slidesPerView={4}
                     navigation
                     pagination={{ clickable: true }}
+                    breakpoints={{
+                        320: {
+                            slidesPerView: 1,
+                            spaceBetween: 10
+                        },
+                        480: {
+                            slidesPerView: 2,
+                            spaceBetween: 15
+                        },
+                        640: {
+                            slidesPerView: 3,
+                            spaceBetween: 20
+                        },
+                        1024: {
+                            slidesPerView: 4,
+                            spaceBetween: 20
+                        }
+                    }}
                     // onSlideChange={() => console.log('slide change')}
                     // onSwiper={(swiper) => console.log(swiper)}
                     className="mySwiper flex flex-col justify-center items-center"
                 >
                     {films.map((film, index) => (
                         <SwiperSlide key={index}>
-                            <Link to={`/films/One/${film._id}`} key={film.id} >
+                            <Link to={`/films/One/${film._id}`} key={film.id} className="flex justify-center items-center">
                                 <FilmCard
                                     titre={film.titre}
                                     // genre={film.genre}

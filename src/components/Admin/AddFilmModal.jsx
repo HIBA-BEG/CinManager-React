@@ -6,15 +6,15 @@ const AddFilmModal = ({ onClose, onAddFilm }) => {
     const [filmData, setFilmData] = useState({
         titre: '',
         genre: [],
-        affiche: '',
+        affiche: {},
         duree: '',
         description: '',
         dateSortie: '',
         producer: '',
-        status: 'Private',
-        video: '',
-        isStreamed: '',
-        releaseStreamDate: '',
+        status: 'Public',
+        video: {},
+        isStreamed: false,
+        releaseStreamDate: ''
     });
         
     const [genres, setGenres] = useState([]);
@@ -26,7 +26,7 @@ const AddFilmModal = ({ onClose, onAddFilm }) => {
         const fetchGenres = async () => {
             try {
                 const fetchedGenres = await getAllGenres();
-                console.log(fetchedGenres);
+                // console.log(fetchedGenres);
                 setGenres(fetchedGenres);
             } catch (error) {
                 console.error('Error fetching genres:', error);
@@ -37,7 +37,7 @@ const AddFilmModal = ({ onClose, onAddFilm }) => {
     }, []);
 
     const handleInputChange = (e) => {
-        setFilmData({ ...filmData, [e.target.name]: e.target.value });
+        setFilmData({ ...filmData, [e.target.name]: e.target.value.trim() });
     };
 
     const handleCheckboxChange = (e) => {
@@ -45,13 +45,20 @@ const AddFilmModal = ({ onClose, onAddFilm }) => {
     };
 
     const handleFileChange = (e) => {
-        setFilmData({ ...filmData, [e.target.name]: e.target.files?.[0].name });
+        const { name, files } = e.target;
+        if (files && files[0]) {
+            setFilmData(prev => ({
+                ...prev,
+                [name]: files[0]
+            }));
+        }
     };
 
     const handleGenreChange = (e) => {
         const selectedGenres = Array.from(e.target.selectedOptions, option => option.value);
         setFilmData(filmData => ({ ...filmData, genre: selectedGenres }));
     };
+
 
     if (isLoading) {
         return <LoadingSpinner />;
@@ -63,8 +70,12 @@ const AddFilmModal = ({ onClose, onAddFilm }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
+        // console.log('Submitting film data:', filmData);
+
         try {
+            console.log(filmData)
             const newFilm = await addFilm(filmData);
+
             onAddFilm(newFilm);
             onClose();
         } catch (error) {
@@ -110,7 +121,7 @@ const AddFilmModal = ({ onClose, onAddFilm }) => {
                                 className="p-2 w-full border rounded text-black focus:outline-none focus:ring-2 focus:ring-red-700"
                             >
                                 {genres.map(genre => (
-                                    <option key={genre._id} value={genre._id}>{genre.name}</option>
+                                    <option key={genre._id} value={genre._id} className='text-black'>{genre.nom}</option>
                                 ))}
                             </select>
                         </div>
@@ -122,7 +133,7 @@ const AddFilmModal = ({ onClose, onAddFilm }) => {
                                 name="affiche"
                                 onChange={handleFileChange}
                                 accept="image/*"
-                                required
+                                // required
                                 className="p-2 w-full border rounded text-black focus:outline-none focus:ring-2 focus:ring-red-700"
                             />
                         </div>
@@ -179,8 +190,8 @@ const AddFilmModal = ({ onClose, onAddFilm }) => {
                                 className="p-2 w-full border rounded text-black focus:outline-none focus:ring-2 focus:ring-red-700"
                                 required
                             >
-                                <option value="Public">Public</option>
-                                <option value="Private">Private</option>
+                                 <option value="Public">Public</option>
+                                 <option value="Private">Private</option>
                             </select>
                         </div>
                         <div>
@@ -206,18 +217,6 @@ const AddFilmModal = ({ onClose, onAddFilm }) => {
                                 <label htmlFor="isStreamed">Is Streamed</label>
                             </div>
                         </div>
-                        <div>
-                            <label htmlFor="releaseStreamDate" className="block mb-1 font-semibold text-red-700 capitalize">Release Stream Date</label>
-                            {filmData.isStreamed && (
-                                <input
-                                    type="datetime-local"
-                                    name="releaseStreamDate"
-                                    value={filmData.releaseStreamDate}
-                                    onChange={handleInputChange}
-                                    className="p-2 w-full border rounded text-black focus:outline-none focus:ring-2 focus:ring-red-700"
-                                />
-                            )}
-                        </div>
                     </div>
                     <div className="flex justify-end mt-4">
                         <button
@@ -230,8 +229,9 @@ const AddFilmModal = ({ onClose, onAddFilm }) => {
                         <button
                             type="submit"
                             className="btn btn-primary"
+                            disabled={isLoading}
                         >
-                            Add Film
+                             {isLoading ? 'Adding...' : 'Add Film'}
                         </button>
                     </div>
                 </form>

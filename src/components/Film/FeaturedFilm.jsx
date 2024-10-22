@@ -43,8 +43,8 @@ export default function FeaturedFilm() {
     return (
         <div className="featured-film" style={{ backgroundImage: `url('${afficheUrl}')` }}>
             <div className="featured-content">
-                <h2 className="featured-title">{latestFilm.titre}</h2>
-                <p className="featured-description">{latestFilm.description}</p>
+                <h2 className="featured-title text-2xl font-bold">{latestFilm.titre}</h2>
+                <p className="featured-description text-lg italic">{latestFilm.description}</p>
                 <Link to={`/films/One/${latestFilm._id}`} className="btn btn-primary">Details</Link>
             </div>
         </div>

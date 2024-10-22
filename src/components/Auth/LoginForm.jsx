@@ -37,7 +37,7 @@ const LoginForm = () => {
             if (user.type === 'Administrateur') {
                 navigate('/admin');  
             } else if (user.type === 'Client') {
-                navigate('/client/reservations'); 
+                navigate('/MyReservations'); 
             }
         } catch (err) {
             setError(err.message || 'An error occurred during login');

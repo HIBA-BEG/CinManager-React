@@ -39,18 +39,16 @@ const AllComments = ({ comments, setComments }) => {
                   alt={comment.user.nom}
                   loading="lazy"
                 />
-                <div className="flex flex-col w-full">
-                  <div className="flex flex-row justify-between">
+                  <div className="flex flex-col md:flex-row justify-between w-full">
                     <p className="relative text-2xl whitespace-nowrap truncate overflow-hidden">
                       {comment.user.nom} {comment.user.prenom}
                     </p>
                     <p className="text-gray-400 text-sm">{new Date(comment.created_at).toLocaleString()}</p>
                   </div>
-                </div>
               </div>
               <div className="flex flex-row justify-between">
 
-                <p className="-mt-4 ">{comment.contenu}</p>
+                <p className="md:-mt-4 ">{comment.contenu}</p>
                 {isCurrentUserComment && (
                   <button
                     className="text-red-500 hover:bg-red-500 hover:text-white rounded-md px-1"

@@ -9,7 +9,7 @@ const axiosAuth = () => {
   return axios.create({
     headers: {
       Authorization: `Bearer ${token}`,
-      ['Content-Type']: `multipart/form-data`,
+      'Content-Type': `multipart/form-data`,
     },
   });
 };
@@ -34,35 +34,30 @@ export const getFilmById = async (id) => {
   }
 };
 
-export const addFilm = async (filmData) => {
-  // console.log(filmData);
-  try {
-    const formData = new FormData();
-
-    Object.keys(filmData).forEach((key) => {
-      if (key === "affiche" || key === "video") {
-        if (filmData[key]) formData.append(key, filmData[key]);
-      } else {
-        formData.append(key, JSON.stringify(filmData[key]));
-      }
-    });
-    // console.log(formData);
+export const addFilm = async (data) =>
+  {
+    console.log(data);
     
-    for (let pair of formData.entries()) {
-      console.log(pair[0] + ":", pair[1]);
-    }
+    const formData = new FormData();
+    formData.append('affiche', data.affiche);
+    formData.append('video', data.video);
+    formData.append('titre', data.titre);
+    formData.append('genre', data.genre);
+    formData.append('description', data.description);
+    formData.append('duree', data.duree);
+    formData.append('dateSortie', data.dateSortie);
+    formData.append('status', data.status);
+    formData.append('producer', data.producer);
+    formData.append('isStreamed', data.isStreamed);
+    formData.append('releaseStreamDate', data.releaseStreamDate);
 
-    const response = await axiosAuth().post(
-      `${apiUrl}/films/AddFilm`,
-      formData,
-     
-    );
-    // console.log("response: ", response);
-    return response.data;
-  } catch (error) {
-    console.error("Error adding new film:", error);
-    throw error;
-  }
+    try {
+        const response = await axiosAuth().post(`${apiUrl}/films/AddFilm`, formData);
+        return response.data;
+    } catch (error) {
+        console.error("Error adding film:", error.response || error.message);
+        throw error;
+    }
 };
 
 export const updateFilm = async (id, filmData) => {

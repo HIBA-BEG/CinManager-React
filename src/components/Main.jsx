@@ -5,7 +5,7 @@ import LatestFilms from "../pages/LatestFilms";
 import FeaturedFilm from "./Film/FeaturedFilm";
 
 export default function Main() {
-    console.log('API URL:', process.env.REACT_APP_API_URL);
+    // console.log('API URL:', process.env.REACT_APP_API_URL);
     return (
         <div>
             <Header />
