@@ -4,6 +4,7 @@ import { getFilmById } from '../../services/FilmServices';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import SeanceCard from '../../components/Admin/SeanceCard';
 import AddSeanceModal from '../../components/Admin/AddSeanceModal';
+import { PlusIcon } from 'lucide-react';
 
 const SeanceManagement = () => {
   const [seances, setSeances] = useState([]);
@@ -77,9 +78,9 @@ const SeanceManagement = () => {
         <h1 className="text-4xl font-bold">Seance Management</h1>
         <button
           onClick={() => setIsAddModalOpen(true)}
-          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+          className="border-4 border-red-700 rounded-full p-2"
         >
-          Add New Seance
+          <PlusIcon className="m-2 text-red-700 font-bold text-7xl " />
         </button>
       </div>
       <div className="flex flex-wrap justify-center gap-4">

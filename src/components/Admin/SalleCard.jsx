@@ -1,4 +1,6 @@
 import React from 'react';
+import { FaRegEdit } from 'react-icons/fa';
+import { MdDeleteOutline } from 'react-icons/md';
 
 const SalleCard = ({ _id, nom, capacite, type, onDelete, onEdit }) => {
   const handleDelete = () => {
@@ -8,22 +10,24 @@ const SalleCard = ({ _id, nom, capacite, type, onDelete, onEdit }) => {
   };
 
   return (
-    <div className="bg-gray-900 rounded-lg p-4 w-full max-w-xs flex-shrink-0">
-      <h3 className="text-lg font-semibold text-white">{nom}</h3>
-      <p className="text-gray-400">Capacité: {capacite}</p>
-      <p className="text-gray-400">Type: {type}</p>
-      <div className="mt-4 flex justify-between">
+    <div className="flex flex-row justify-between bg-gray-800 rounded-lg p-4 w-full max-w-xs flex-shrink-0">
+      <div className="flex flex-col justify-between">
+        <h3 className="text-lg font-semibold text-white">{nom}</h3>
+        <p className="text-gray-400">Capacité: {capacite}</p>
+        <p className="text-gray-400">Type: {type}</p>
+      </div>
+      <div className="flex flex-col justify-between">
         <button
           onClick={() => onEdit(_id)}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          className="text-2xl ml-1 hover:text-green-500 text-green-700"
         >
-          Edit
+          <FaRegEdit />
         </button>
         <button
           onClick={handleDelete}
-          className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+          className="text-3xl hover:text-red-400 text-red-700"
         >
-          Delete
+          <MdDeleteOutline />
         </button>
       </div>
     </div>

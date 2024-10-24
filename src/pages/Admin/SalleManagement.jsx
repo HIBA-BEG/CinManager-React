@@ -3,12 +3,14 @@ import { getAllSalles, deleteSalle } from '../../services/SalleServices';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import SalleCard from '../../components/Admin/SalleCard';
 import AddSalleModal from '../../components/Admin/AddSalleModal';
+import { PlusIcon } from 'lucide-react';
 
 const SalleManagement = () => {
   const [salles, setSalles] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setLoading] = useState(true);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [currentSalle, setCurrentSalle] = useState(null);
 
   useEffect(() => {
     fetchSalles();
@@ -31,6 +33,13 @@ const SalleManagement = () => {
     setIsAddModalOpen(false);
   };
 
+  const handleUpdateSalle = (updatedSalle) => {
+    setSalles(salles.map(salle => 
+      salle._id === updatedSalle._id ? updatedSalle : salle
+    ));
+    setIsAddModalOpen(false);
+  };
+
   const handleDeleteSalle = async (id) => {
     try {
       await deleteSalle(id);
@@ -42,8 +51,14 @@ const SalleManagement = () => {
   };
 
   const handleEditSalle = (id) => {
-    // Implement edit functionality
-    console.log('Edit salle with id:', id);
+    const salleToEdit = salles.find(salle => salle._id === id);
+    setCurrentSalle(salleToEdit);
+    setIsAddModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsAddModalOpen(false);
+    setCurrentSalle(null);
   };
 
   if (isLoading) {
@@ -60,9 +75,9 @@ const SalleManagement = () => {
         <h1 className="text-4xl font-bold">Salle Management</h1>
         <button
           onClick={() => setIsAddModalOpen(true)}
-          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+          className="border-4 border-red-700 rounded-full p-2"
         >
-          Add New Salle
+          <PlusIcon className="m-2 text-red-700 font-bold text-7xl " />
         </button>
       </div>
       <div className="flex flex-wrap justify-center gap-4">
@@ -77,8 +92,10 @@ const SalleManagement = () => {
       </div>
       {isAddModalOpen && (
         <AddSalleModal
-          onClose={() => setIsAddModalOpen(false)}
+          onClose={handleModalClose}
           onAddSalle={handleAddSalle}
+          onUpdateSalle={handleUpdateSalle}
+          currentSalle={currentSalle}
         />
       )}
     </div>

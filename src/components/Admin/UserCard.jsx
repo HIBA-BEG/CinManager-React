@@ -55,16 +55,17 @@ const UserCard = ({
                 </div>
             </div>
 
-            <div className="space-y-2">
-                <h3 className="text-lg font-semibold text-white">{nom} {prenom}</h3>
-                <p className="text-gray-400">{email}</p>
-                <p className="text-gray-400">{type}</p>
-                <p className="text-gray-400">{numero_telephone}</p>
-                <p className="text-gray-400">{adresse}</p>
-                <p className="text-gray-400">{new Date(birthday).toLocaleDateString()}</p>
-                <p className="text-gray-400">{abonnement}</p>
-                <p className="text-gray-400">{new Date(created_at).toLocaleDateString()}</p>
-                <p className="text-gray-500 italic">Is Banned: {isBanned ? 'Yes' : 'No'}</p>
+            <div className="space-y-2 text-gray-400 font-semibold">
+                <h3 className="text-lg">Last Name: <span className="text-white font-normal">{nom}</span></h3>
+                <h3 className="text-lg">First Name: <span className="text-white font-normal">{prenom}</span></h3>
+                <p>Email: <span className="text-white font-normal">{email}</span></p>
+                <p>Type: <span className="text-white font-normal">{type}</span></p>
+                <p>Phone Number: <span className="text-white font-normal">{numero_telephone}</span></p>
+                <p>Address: <span className="text-white font-normal">{adresse}</span></p>
+                <p>Birthday: <span className="text-white font-normal">{new Date(birthday).toLocaleDateString()}</span></p>
+                <p>Subscription: <span className="text-white font-normal">{abonnement}</span></p>
+                <p>Created At: <span className="text-white font-normal">{new Date(created_at).toLocaleDateString()}</span></p>
+                <p>Is Banned: <span className="text-white font-normal">{isBanned ? 'Yes' : 'No'}</span></p>
                 <div className="flex justify-center">
 
                 <button
