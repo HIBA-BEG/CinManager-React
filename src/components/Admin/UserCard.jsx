@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { unbanUser, banUser } from '../../services/UserServices';
+import { MdDeleteOutline } from 'react-icons/md';
 
 const UserCard = ({
     _id,
@@ -14,10 +15,10 @@ const UserCard = ({
     created_at,
     archived_user: userStatus,
     profilePic,
+    onDelete
 }) => {
     const [isBanned, setIsBanned] = useState(userStatus);
 
-    // console.log("profilePic", profilePic);
     const profilePicUrl = `${process.env.REACT_APP_MINIO_PATH}${profilePic}`;
 
     const handleBanToggle = async () => {
@@ -35,7 +36,15 @@ const UserCard = ({
     };
 
     return (
-        <div className="bg-gray-800 rounded-lg p-8 w-full max-w-xs flex-shrink-0">
+        <div className="relative bg-gray-800 rounded-lg p-8 w-full max-w-xs flex-shrink-0">
+             {type === 'Administrateur' && (
+                <button
+                    onClick={() => onDelete(_id)}
+                    className="absolute top-4 right-3 text-red-700 hover:text-red-500"
+                >
+                    <MdDeleteOutline size={30} />
+                </button>
+            )}
             <div className="flex justify-between mb-4">
                 <div className="flex items-center">
                     <div className="relative">
@@ -67,14 +76,13 @@ const UserCard = ({
                 <p>Created At: <span className="text-white font-normal">{new Date(created_at).toLocaleDateString()}</span></p>
                 <p>Is Banned: <span className="text-white font-normal">{isBanned ? 'Yes' : 'No'}</span></p>
                 <div className="flex justify-center">
-
-                <button
-                    onClick={handleBanToggle}
-                    className={`mt-2 px-4 py-2 rounded-xl ${isBanned ? 'bg-green-600 hover:bg-green-600' : 'bg-red-800 hover:bg-red-900'} text-white`}
+                    <button
+                        onClick={handleBanToggle}
+                        className={`mt-2 px-4 py-2 rounded-xl ${isBanned ? 'bg-green-600 hover:bg-green-600' : 'bg-red-800 hover:bg-red-900'} text-white`}
                     >
-                    {isBanned ? 'Unban' : 'Ban'}
-                </button>
-                    </div>
+                        {isBanned ? 'Unban' : 'Ban'}
+                    </button>
+                </div>
             </div>
         </div>
     );
