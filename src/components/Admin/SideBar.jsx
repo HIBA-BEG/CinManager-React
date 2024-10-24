@@ -12,6 +12,7 @@ const Sidebar = () => {
     { name: 'User Management', path: '/admin/UserManagement' },
     { name: 'Seance Management', path: '/admin/SeancesManagement' },
     { name: 'Salle Management', path: '/admin/SalleManagement' },
+    { name: 'Genre Management', path: '/admin/GenreManagement' },
     { name: 'All Reservations', path: '/admin/reservations' },
   ];
 
