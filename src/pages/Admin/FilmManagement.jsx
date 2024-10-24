@@ -3,6 +3,7 @@ import { getAllFilms } from '../../services/FilmServices';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import FilmCard from '../../components/Admin/FilmCard';
 import AddFilmModal from '../../components/Admin/AddFilmModal';
+import { PlusIcon } from 'lucide-react';
 
 const FilmManagement = () => {
   const [films, setFilms] = useState([]);
@@ -50,9 +51,9 @@ const FilmManagement = () => {
         <h1 className="text-4xl font-bold">Film Management</h1>
         <button
           onClick={() => setIsAddModalOpen(true)}
-          className="btn btn-primary"
+          className="border-4 border-red-700 rounded-full p-2"
         >
-          Add New Film
+          <PlusIcon className="m-2 text-red-700 font-bold text-7xl " />
         </button>
       </div>
       <div className="flex flex-wrap justify-center gap-4">

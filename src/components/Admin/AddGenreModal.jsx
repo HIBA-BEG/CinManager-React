@@ -1,39 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import { addSalle, updateSalle } from '../../services/SalleServices';
+import { addGenre, updateGenre } from '../../services/GenreServices';
 
-const AddSalleModal = ({ onClose, onAddSalle, currentSalle, onUpdateSalle }) => {
-  const [salleData, setSalleData] = useState({
+const AddGenreModal = ({ onClose, onAddGenre, currentGenre, onUpdateGenre }) => {
+  const [genreData, setGenreData] = useState({
     nom: '',
-    capacite: '',
-    type: 'Standard',
   });
   const [error, setError] = useState('');
 
   useEffect(() => {
-    if (currentSalle) {
-      setSalleData(currentSalle);
+    if (currentGenre) {
+      setGenreData(currentGenre);
     }
-  }, [currentSalle]);
+  }, [currentGenre]);
 
   const handleInputChange = (e) => {
-    setSalleData({ ...salleData, [e.target.name]: e.target.value });
+    setGenreData({ ...genreData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     try {
-      if (currentSalle) {
-        const updatedSalle = await updateSalle(currentSalle._id, salleData);
-        onUpdateSalle(updatedSalle);
+      if (currentGenre) {
+        const updatedGenre = await updateGenre(currentGenre._id, genreData);
+        onUpdateGenre(updatedGenre);
       } else {
-        const newSalle = await addSalle(salleData);
-        onAddSalle(newSalle);
+        const newGenre = await addGenre(genreData);
+        onAddGenre(newGenre);
       }
       onClose();
     } catch (error) {
-      console.error('Error saving salle:', error);
-      setError(error.response?.data?.message || 'An error occurred while saving the salle');
+      console.error('Error saving genre:', error);
+      setError(error.response?.data?.message || 'An error occurred while saving the genre');
     }
   };
 
@@ -41,7 +39,7 @@ const AddSalleModal = ({ onClose, onAddSalle, currentSalle, onUpdateSalle }) => 
     <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center overflow-y-auto">
       <div className="bg-white dark:bg-gray-800 p-6 rounded-lg w-full max-w-md m-4">
         <h2 className="text-red-700 text-4xl font-bold text-center mb-6">
-          {currentSalle ? 'Edit Salle' : 'Add New Salle'}
+          {currentGenre ? 'Edit Genre' : 'Add New Genre'}
         </h2>
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -50,29 +48,18 @@ const AddSalleModal = ({ onClose, onAddSalle, currentSalle, onUpdateSalle }) => 
             <input
               type="text"
               name="nom"
-              value={salleData.nom}
+              value={genreData.nom}
               onChange={handleInputChange}
               required
               className="p-2 w-full border rounded text-black focus:outline-none focus:ring-2 focus:ring-red-700"
             />
           </div>
           <div>
-            <label htmlFor="capacite" className="block mb-1 font-semibold text-red-700 capitalize">Capacité</label>
-            <input
-              type="number"
-              name="capacite"
-              value={salleData.capacite}
-              onChange={handleInputChange}
-              required
-              className="p-2 w-full border rounded text-black focus:outline-none focus:ring-2 focus:ring-red-700"
-            />
-          </div>
-          <div>
-            <label htmlFor="type" className="block mb-1 font-semibold text-red-700 capitalize">Type</label>
+            <label htmlFor="description" className="block mb-1 font-semibold text-red-700 capitalize">Description</label>
             <input
               type="text"
-              name="type"
-              value={salleData.type}
+              name="description"
+              value={genreData.description}
               onChange={handleInputChange}
               required
               className="p-2 w-full border rounded text-black focus:outline-none focus:ring-2 focus:ring-red-700"
@@ -90,7 +77,7 @@ const AddSalleModal = ({ onClose, onAddSalle, currentSalle, onUpdateSalle }) => 
               type="submit"
               className="btn btn-primary"
             >
-              {currentSalle ? 'Update Salle' : 'Add Salle'}
+              {currentGenre ? 'Update Genre' : 'Add Genre'}
             </button>
           </div>
         </form>
@@ -99,4 +86,4 @@ const AddSalleModal = ({ onClose, onAddSalle, currentSalle, onUpdateSalle }) => 
   );
 };
 
-export default AddSalleModal;
+export default AddGenreModal;

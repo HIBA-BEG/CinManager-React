@@ -64,7 +64,8 @@ const ProfilePanel = ({ isOpen, onClose }) => {
     if (window.confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
       try {
         await deleteMyAccount();
-        await logout()
+        localStorage.removeItem('token');
+        // await logout()
         onClose();
         navigate('/');
       } catch (error) {

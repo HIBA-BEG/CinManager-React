@@ -11,6 +11,8 @@ const Sidebar = () => {
     { name: 'Film Management', path: '/admin/filmManagement' },
     { name: 'User Management', path: '/admin/UserManagement' },
     { name: 'Seance Management', path: '/admin/SeancesManagement' },
+    { name: 'Salle Management', path: '/admin/SalleManagement' },
+    { name: 'Genre Management', path: '/admin/GenreManagement' },
     { name: 'All Reservations', path: '/admin/reservations' },
   ];
 
@@ -40,7 +42,7 @@ const Sidebar = () => {
           <Link
             key={item.name}
             to={item.path}
-            className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700"
+            className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-800"
             onClick={() => setIsOpen(false)}
           >
             {item.name}

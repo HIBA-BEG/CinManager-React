@@ -15,6 +15,8 @@ import SeancesManagement from "./pages/Admin/SeanceManagement"
 import WatchMovie from "./pages/WatchMovie";
 import MyReservationsPage from "./pages/MyReservationsPage";
 import FavoritesPage from './pages/FavoritesPage';
+import SalleManagement from "./pages/Admin/SalleManagement";
+import GenreManagement from "./pages/Admin/GenreManagement";
 
 
 function App() {
@@ -43,6 +45,8 @@ function App() {
               <Route path="FilmManagement" element={<FilmManagement />} />
               <Route path="UserManagement" element={<UserManagement />} />
               <Route path="SeancesManagement" element={<SeancesManagement />} />
+              <Route path="SalleManagement" element={<SalleManagement />} />
+              <Route path="GenreManagement" element={<GenreManagement />} />
               {/* <Route path="reservations" element={<Reservations />} /> */}
             </Route>
 
