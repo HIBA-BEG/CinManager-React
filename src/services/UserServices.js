@@ -110,3 +110,13 @@ export const deleteMyAccount = async () => {
     throw error;
   }
 };
+
+export const getStatistics = async () => {  
+  try {
+    const response = await axiosAuth().get(`${apiUrl}/admin/Statistics`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching statistics:', error);
+    throw error;
+  }
+};
