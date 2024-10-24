@@ -120,3 +120,13 @@ export const getStatistics = async () => {
     throw error;
   }
 };
+
+export const deleteUser = async (id) => {
+  try {
+    const response = await axiosAuth().delete(`${apiUrl}/admin/DeleteAdmin/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error deleting user:', error);
+    throw error;
+  }
+};
