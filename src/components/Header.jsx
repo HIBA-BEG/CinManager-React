@@ -3,6 +3,10 @@ import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { isAuthenticated, logout, getUser } from '../services/AuthServices';
 import { IoLogOut } from "react-icons/io5";
+import { FaUser } from "react-icons/fa";
+import SideProfile from "./SideProfile";
+
+
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,6 +14,7 @@ export default function Header() {
     const authenticated = isAuthenticated();
     const user = authenticated ? getUser() : null;
     const location = useLocation();
+    const [isProfileOpen, setIsProfileOpen] = useState(false);
 
     const handleLogout = () => {
         logout();
@@ -32,17 +37,22 @@ export default function Header() {
                     <span className="text-red-700 md:text-4xl">W</span>and
                 </h1>
 
-                <button className="md:hidden text-white" onClick={toggleMenu}>
-                    {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-                </button>
+                {!isMenuOpen && (
+                    <button className="md:hidden text-white" onClick={() => setIsMenuOpen(true)}>
+                        <FaBars size={24} />
+                    </button>
+                )}
 
                 <nav className="hidden md:block">
-                    <ul className="flex gap-8">
+                    <ul className="flex gap-8 text-nowrap ">
                         <li><Link to="/" className={`hover:text-red-700 ${isActive("/")}`}>Home</Link></li>
                         <li><Link to="/films" className={`hover:text-red-700 ${isActive("/films")}`}>Films</Link></li>
                         <li><Link to="/seances" className={`hover:text-red-700 ${isActive("/seances")}`}>Seances</Link></li>
                         {authenticated && (
-                            <li><Link to="/MyReservations" className={`hover:text-red-700 ${isActive("/MyReservations")}`}>My Reservations</Link></li>
+                            <li><Link to="/MyReservations" className={`hover:text-red-700 text-nowrap ${isActive("/MyReservations")}`}>My Reservations</Link></li>
+                        )}
+                        {authenticated && (
+                            <li><Link to="/Myfavorites" className={`hover:text-red-700 ${isActive("/Myfavorites")}`}>My Favorites</Link></li>
                         )}
                     </ul>
                 </nav>
@@ -60,10 +70,29 @@ export default function Header() {
                         <Link to="/login" className="text-white hover:text-red-700">Login</Link>
                     )}
                 </div>
+
             </div>
 
+            {authenticated && (
+                <>
+                    <button
+                        onClick={() => setIsProfileOpen(true)}
+                        className="fixed md:top-36 top-32 right-0 z-50 bg-red-800 text-white p-4 rounded-l-full shadow-lg hover:bg-red-900"
+                    >
+                        <FaUser />
+                    </button>
+                    <SideProfile isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} />
+                </>
+            )}
+
             {isMenuOpen && (
-                <nav className="bgcolorCss border-2 border-red-800 w-64 rounded-xl md:hidden mt-40 inset-0 z-50">
+                <nav className="relative bgcolorCss border-2 border-red-800 w-full  rounded-xl md:hidden mt-40 inset-0 z-50">
+
+                    <div className="absolute top-4 left-4 md:hidden">
+                        <button className="text-white" onClick={() => setIsMenuOpen(false)}>
+                            <FaTimes size={24} />
+                        </button>
+                    </div>
                     <ul className="flex flex-col space-y-2 items-center p-4 rounded-lg">
                         <li><Link to="/" className={`block hover:text-red-700 ${isActive("/")}`} onClick={toggleMenu}>Home</Link></li>
                         <li><Link to="/films" className={`block hover:text-red-700 ${isActive("/films")}`} onClick={toggleMenu}>Films</Link></li>
@@ -76,7 +105,6 @@ export default function Header() {
                                 <span>Hello, {user.nom} {user.prenom}</span>
                                 <div className="flex flex-row items-center gap-8">
                                     <FaSearch className="text-xl text-gray-400" />
-
                                     <button onClick={handleLogout} className="bg-red-700 text-white px-2 py-1 rounded hover:bg-red-600">
                                         <IoLogOut />
                                     </button>
@@ -88,6 +116,7 @@ export default function Header() {
                     </ul>
                 </nav>
             )}
+
         </header>
     );
 }

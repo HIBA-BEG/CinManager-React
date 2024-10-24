@@ -37,8 +37,8 @@ const AddComment = ({ filmId, onAddComment }) => {
   };
 
   return (
-    <div className='flex flex-col items-center p-4'>
-      <h3 className="text-xl font-bold mb-2">Add a Comment</h3>
+    <div className='flex flex-col items-center'>
+      <h3 className="text-3xl font-bold mb-2">Add a Comment</h3>
       <form onSubmit={handleSubmit} className="mt-4 flex flex-col items-center w-full md:max-w-2xl">
         <textarea
           value={contenu}
