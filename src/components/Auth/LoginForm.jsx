@@ -34,6 +34,11 @@ const LoginForm = () => {
         try {
             const { user } = await loginUser(credentials);
 
+            if (user.archived_user) {
+                setError('Your account has been deleted. Please contact the administrator.');
+                return;
+            }
+
             if (user.type === 'Administrateur') {
                 navigate('/admin');  
             } else if (user.type === 'Client') {
@@ -50,7 +55,7 @@ const LoginForm = () => {
         <div className="flex items-center justify-center h-screen bg-cover bg-center" style={{ backgroundImage: "url('/images/background.jpg')" }}>
             <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-xl">
                 <h1 className="text-red-700 text-4xl font-bold text-center mb-6">Login</h1>
-                {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+                {error && <p className="text-red-500 text-center mb-4 font-bold text-xl">{error}</p>}
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
                         <label htmlFor="email" className="block mb-1 font-semibold text-red-700">Email</label>

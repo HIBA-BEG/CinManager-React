@@ -17,7 +17,7 @@ const AllComments = ({ comments, setComments }) => {
 
   return (
     <div className="flex flex-col items-center">
-      <h3 className="text-xl font-bold my-6">Comments</h3>
+      <h3 className="text-3xl font-bold my-6">Comments</h3>
       {comments.length === 0 ? (
         <p className='text-red-600 text-2xl italic text-center font-bold mb-6'>No comments yet. <br></br> Be the first to comment! ❤️</p>
       ) : (

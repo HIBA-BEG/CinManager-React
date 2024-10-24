@@ -80,3 +80,33 @@ export const unbanUser = async (id) => {
     throw error;
   }
 };
+
+export const getMyProfile = async () => {
+  try {
+    const response = await axiosAuth().get(`${apiUrl}/users/MyProfile`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching profile:', error);
+    throw error;
+  }
+};
+
+export const updateMyProfile = async (profileData) => {
+  try {
+    const response = await axiosAuth().put(`${apiUrl}/users/MyProfile`, profileData);
+    return response.data;
+  } catch (error) {
+    console.error('Error updating profile:', error);
+    throw error;
+  }
+};
+
+export const deleteMyAccount = async () => {
+  try {
+    const response = await axiosAuth().delete(`${apiUrl}/users/MyProfile`);
+    return response.data;
+  } catch (error) {
+    console.error('Error deleting account:', error);
+    throw error;
+  }
+};

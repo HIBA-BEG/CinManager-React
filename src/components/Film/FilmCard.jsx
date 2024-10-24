@@ -16,7 +16,7 @@ export default function FilmCard({titre , id ,genres , duree , description, affi
                 <p>No image available</p>
             )}
             <p className="film-title">{titre}</p>
-            <p className="text-sm text-gray-600">{genres}</p>
+            {/* <p className="text-sm text-gray-600">{genres}</p> */}
 
         </div>
         </>

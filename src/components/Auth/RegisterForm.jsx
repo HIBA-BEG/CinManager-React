@@ -74,7 +74,12 @@ const RegisterForm = () => {
             await registerUser(userData);
             navigate('/login');
         } catch (err) {
-            setError(err.message || 'An error occurred during registration');
+            // setError(err.message || 'An error occurred during registration');
+            if (err.response && err.response.data) {
+                setError(err.response.data.message || 'An error occurred during registration');
+            } else {
+                setError('An unexpected error occurred. Please try again.');
+            }
         } finally {
             setIsLoading(false);
         }
